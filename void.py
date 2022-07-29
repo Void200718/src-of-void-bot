@@ -1,4 +1,4 @@
-#OTkwODY5ODM4ODQ1MDY3Mjg0.GeMGYO.iNXSfdQyIkNOYKBPl_sh2vVSZXQKB940gKE-wc
+
 from multiprocessing import context
 from turtle import position
 import discord
@@ -20,7 +20,7 @@ os.system("pip3 install discord.py[voice]")
 def cls():
     os.system("clear")
 
-token = "OTkwODY5ODM4ODQ1MDY3Mjg0.GeMGYO.iNXSfdQyIkNOYKBPl_sh2vVSZXQKB940gKE-wc"
+token = ""
 prefix = ".", ""
 fansrole = 997165469855399997
 vannotifchnnl = "997165667914633286"
