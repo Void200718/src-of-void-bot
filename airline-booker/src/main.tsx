@@ -1,0 +1,24 @@
+import { StrictMode, useEffect } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import './index.css'
+import App from './App.tsx'
+
+function ThemeBootstrapper() {
+  useEffect(() => {
+    const persisted = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const shouldUseDark = persisted ? persisted === 'dark' : prefersDark
+    document.documentElement.classList.toggle('dark', shouldUseDark)
+  }, [])
+  return null
+}
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <ThemeBootstrapper />
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
+)
