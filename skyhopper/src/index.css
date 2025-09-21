@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-base-100 text-base-content scroll-smooth;
+  }
+  body, #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-base-100/70 backdrop-blur-xl shadow-xl-soft border border-base-300/40;
+  }
+}
+
