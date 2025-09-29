@@ -34,6 +34,7 @@ class AdvancedBot(commands.Bot):
         try:
             await self.load_extension("bot.cogs.general")
             await self.load_extension("bot.cogs.badges")
+            await self.load_extension("bot.cogs.observability")
             try:
                 await self.load_extension("jishaku")
             except Exception:
