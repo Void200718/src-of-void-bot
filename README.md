@@ -8,6 +8,9 @@ A modern, secure Discord bot using discord.py v2 with slash commands, environmen
 - Optional per-guild command sync or global sync
 - Structured logging with colorized output
 - Minimal dependencies and Python 3.11 runtime
+- Dynamic cog auto-loader (`bot.cogs.*`), optional `jishaku` diagnostics
+- SQLite via `aiosqlite` with WAL and a `tags` table ready
+- Reusable paginator view for multi-page embeds
 
 ## Getting Started
 
@@ -36,6 +39,7 @@ python -m bot
 - `BOT_ACTIVITY` (optional): Presence text
 - `SYNC_ON_STARTUP` (default: `true`): Whether to sync app commands at startup
 - `LOG_LEVEL` (default: `INFO`): Logging level
+- `DATABASE_PATH` (default: `data/bot.db`): Path to SQLite DB
 
 ### Deploy
 Procfile is configured to run the worker:
@@ -53,8 +57,27 @@ bot/
   cogs/
     __init__.py
     utility.py
+    admin.py
+    moderation.py
+    info.py
+    fun.py
+    tags.py
+    help.py
+  utils/
+    __init__.py
+    paginator.py
 ```
 
 ## Security Notes
 - Secrets must not be committed. Use `.env` locally and environment variables in production.
 - The previous legacy script with a hard-coded token was removed.
+
+## New Slash Commands
+
+- Admin: `/sync`, `/setactivity`, `/load`, `/unload`, `/reload`
+- Moderation: `/purge`, `/kick`, `/ban`, `/timeout`
+- Info: `/serverinfo`, `/userinfo`, `/botstats`
+- Fun: `/roll`, `/choose`, `/8ball`
+- Tags: `/tag_create`, `/tag`, `/tag_delete`, `/tags`
+
+Tip: Add your user ID to `BOT_OWNERS` to use Admin commands.

@@ -49,23 +49,7 @@ class Utility(commands.Cog):
 
 	@app_commands.command(name="sync", description="Sync application commands (owner only)")
 	async def sync(self, interaction: discord.Interaction) -> None:
-		owner_ids = getattr(getattr(self.bot, "settings", None), "owner_ids", [])
-		if interaction.user.id not in owner_ids and owner_ids:
-			await interaction.response.send_message("You are not authorized to run this.", ephemeral=True)
-			return
-
-		await interaction.response.defer(ephemeral=True)
-		try:
-			guild_ids = getattr(getattr(self.bot, "settings", None), "command_guild_ids", [])
-			if guild_ids:
-				for gid in guild_ids:
-					await self.bot.tree.sync(guild=discord.Object(id=gid))
-				await interaction.followup.send(f"Synced commands to guilds: {', '.join(map(str, guild_ids))}")
-			else:
-				await self.bot.tree.sync()
-				await interaction.followup.send("Globally synced commands.")
-		except Exception as exc:
-			await interaction.followup.send(f"Sync failed: {exc}")
+		await interaction.response.send_message("Use /sync from Admin cog.", ephemeral=True)
 
 
 async def setup(bot: commands.Bot) -> None:

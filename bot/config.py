@@ -28,6 +28,7 @@ class BotSettings:
 	owner_ids: List[int]
 	activity_text: str
 	sync_on_startup: bool
+	database_path: str
 
 	@staticmethod
 	def from_env() -> "BotSettings":
@@ -39,6 +40,7 @@ class BotSettings:
 		owner_ids = _parse_int_list("BOT_OWNERS")
 		activity_text = os.getenv("BOT_ACTIVITY", "Managing your server")
 		sync_on_startup = os.getenv("SYNC_ON_STARTUP", "true").lower() in {"1", "true", "yes", "y"}
+		database_path = os.getenv("DATABASE_PATH", "data/bot.db").strip() or "data/bot.db"
 
 		return BotSettings(
 			token=token,
@@ -46,4 +48,5 @@ class BotSettings:
 			owner_ids=owner_ids,
 			activity_text=activity_text,
 			sync_on_startup=sync_on_startup,
+			database_path=database_path,
 		)
